@@ -2,7 +2,7 @@
 
 Api REST utilizando Spring Boot, Java, Maven, PostgreSQL.
 
-Esse App tem três views:
+Esse Apicativo tem três views:
 
 1- **Painel Administrativo** - para o Gerente chamar a próxima senha  e reiniciar a contagem.
 
