@@ -42,7 +42,7 @@ public class SenhaHistoricoController {
 
     @GetMapping
     @ApiOperation("Lista todos os histórico das senhas geradas pelo APP")
-    public Iterable<SenhaHistorico> findAll(Pageable pageable) {
+    public List<SenhaHistorico> findAll(Pageable pageable) {
         return this.senhaHistoricoService.findAll(pageable);
     }
 

@@ -5,6 +5,7 @@ import br.com.codenation.senha.model.SenhaHistorico;
 import br.com.codenation.senha.model.TipoSenha;
 import br.com.codenation.senha.repository.SenhaHistoricoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class SenhaHistoricoServiceImpl implements SenhaHistoricoService {
 
     @Override
     public List<SenhaHistorico> findAll(Pageable pageable) {
-        return this.senhaHistoricoRepository.findAll(pageable);
+        return this.senhaHistoricoRepository.findAll(pageable).getContent();
     }
 
      @Override
