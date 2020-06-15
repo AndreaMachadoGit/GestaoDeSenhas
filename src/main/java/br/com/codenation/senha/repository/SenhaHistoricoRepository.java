@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,10 +17,9 @@ public interface SenhaHistoricoRepository extends CrudRepository<SenhaHistorico,
 
     List<SenhaHistorico> findByTipoSenha(TipoSenha tipoSenha,Pageable pageable);
 
-    //List<SenhaHistorico> findLastCalledSenhas(Long numero);
-
-
-    //SenhaHistorico updateProximaSenha();
-
+    @Query(value = "SELECT * FROM SENHA_HISTORICO " +
+            "WHERE data_chamada IS NULL " +
+            "ORDER BY tipo_senha DESC, NUMERO ASC )  ", nativeQuery = true)
+    SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico);
 
 }

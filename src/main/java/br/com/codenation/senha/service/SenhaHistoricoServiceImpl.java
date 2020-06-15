@@ -1,11 +1,9 @@
 package br.com.codenation.senha.service;
 
-import br.com.codenation.senha.model.Senha;
 import br.com.codenation.senha.model.SenhaHistorico;
 import br.com.codenation.senha.model.TipoSenha;
 import br.com.codenation.senha.repository.SenhaHistoricoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +41,14 @@ public class SenhaHistoricoServiceImpl implements SenhaHistoricoService {
     public SenhaHistorico save(SenhaHistorico senhaHistorico) {
         senhaHistorico.setDataGeracao(LocalDateTime.now());
         return this.senhaHistoricoRepository.save(senhaHistorico);
+    }
+
+    @Override
+    public SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico) {
+
+        senhaHistorico.setDataChamada(LocalDateTime.now());
+        return this.senhaHistoricoRepository.save(senhaHistorico);
+
     }
 
 

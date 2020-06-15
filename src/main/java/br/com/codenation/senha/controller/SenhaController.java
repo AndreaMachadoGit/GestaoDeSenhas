@@ -66,19 +66,4 @@ public class SenhaController {
         return this.senhaService.findByTipoSenha(tipoSenha);
     }
 
-    @GetMapping("/chamaProximaSenha")
-    @ApiOperation("Busca a próxima senha a ser chamada")
-    public Senha findProximaSenha(TipoSenha tipoSenha) {
-        return this.senhaService.findProximaSenha(tipoSenha);
-    }
-
-    //@GetMapping("/search/{searchTerm}")
-    //@ApiOperation("Efetua a busca no banco de dados pelo conteúdo dos campos Descrição ou Origem")
-    //public Iterable<SenhaDTO> search(
-     //       @PathVariable("searchTerm") String searchTerm,
-     //       @RequestParam(value = "page",required = false,defaultValue = "0") int page,
-     //       @RequestParam(value = "size",required = false,defaultValue = "10") int size) {
-     //   return senhaDTO = SenhaMapper.INSTANCE.map(senhaService.search(searchTerm, page, size));
-    //}
-
 }

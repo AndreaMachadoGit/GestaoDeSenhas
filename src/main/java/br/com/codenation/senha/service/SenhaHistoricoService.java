@@ -1,11 +1,9 @@
 package br.com.codenation.senha.service;
 
-import br.com.codenation.senha.model.Senha;
 import br.com.codenation.senha.model.SenhaHistorico;
 import br.com.codenation.senha.model.TipoSenha;
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +17,7 @@ public interface SenhaHistoricoService {
 
     void deleteById(Long id);
 
-    //List<SenhaHistorico> findLastCalledSenhas(Long numero);
+    SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico);
 
     SenhaHistorico save(SenhaHistorico senhaHistorico);
 

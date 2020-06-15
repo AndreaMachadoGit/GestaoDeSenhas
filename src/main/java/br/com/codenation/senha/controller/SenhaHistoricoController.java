@@ -66,6 +66,11 @@ public class SenhaHistoricoController {
         return this.senhaHistoricoService.findByTipoSenha(tipoSenha,pageable);
     }
 
+    @GetMapping("/chamaProximaSenha")
+    @ApiOperation("Busca a próxima senha a ser chamada - priorizando as senhas PREFERENCIAIS")
+    public SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico) {
+        return this.senhaHistoricoService.chamaProximaSenha(senhaHistorico);
+    }
 
 
 }
