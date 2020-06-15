@@ -4,6 +4,7 @@ import br.com.codenation.controller.advice.ResourceNotFoundException;
 import br.com.codenation.senha.dto.SenhaDTO;
 import br.com.codenation.senha.mapper.SenhaMapper;
 import br.com.codenation.senha.model.Senha;
+import br.com.codenation.senha.model.SenhaHistorico;
 import br.com.codenation.senha.model.TipoSenha;
 import br.com.codenation.senha.service.SenhaService;
 import io.swagger.annotations.ApiOperation;
@@ -34,13 +35,13 @@ public class SenhaController {
     }
 
     @PutMapping
-    @ApiOperation("Atualiza um parâmetro de senha")
+    @ApiOperation("Atualiza um parâmetro de senha, para reiniciar a contagem, mover 1 para o próximo número.")
     public ResponseEntity<Senha> update(@Valid @RequestBody Senha senha) {
         return new ResponseEntity<Senha>(this.senhaService.save(senha), HttpStatus.ACCEPTED);
     }
 
     @GetMapping
-    @ApiOperation("Lista todos os parâmetros de senha da APP")
+    @ApiOperation("Lista todos os parâmetros de senha do APP")
     public Iterable<SenhaDTO> findAll(Pageable pageable) {
          return senhaDTO = SenhaMapper.INSTANCE.map(this.senhaService.findAll(pageable));
     }
@@ -54,15 +55,21 @@ public class SenhaController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation("Exclui um parâmetro de senha")
+    @ApiOperation("Exclui um parâmetro de senha pelo id")
     public void delete(@PathVariable("id") Long id) {
         this.senhaService.deleteById(id);
     }
 
     @GetMapping("/byTipoSenha/{tipoSenha}")
-    @ApiOperation("Busca uma lista de parâmetros de erros pelo tipo da senha (NORMAL, PRIORITARIO)")
-    public List<Senha> findByTipoSenha(@PathVariable("tipoSenha") TipoSenha tipoSenha, Pageable pageable) {
-        return this.senhaService.findByTipoSenha(tipoSenha,pageable);
+    @ApiOperation("Gera o valor da próxima senha pelo tipo da senha (NORMAL, PRIORITARIO)")
+    public Senha findByTipoSenha(@PathVariable("tipoSenha") TipoSenha tipoSenha) {
+        return this.senhaService.findByTipoSenha(tipoSenha);
+    }
+
+    @GetMapping("/chamaProximaSenha")
+    @ApiOperation("Busca a próxima senha a ser chamada")
+    public Senha findProximaSenha(TipoSenha tipoSenha) {
+        return this.senhaService.findProximaSenha(tipoSenha);
     }
 
     //@GetMapping("/search/{searchTerm}")

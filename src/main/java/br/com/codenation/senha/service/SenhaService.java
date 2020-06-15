@@ -1,6 +1,7 @@
 package br.com.codenation.senha.service;
 
 import br.com.codenation.senha.model.Senha;
+import br.com.codenation.senha.model.SenhaHistorico;
 import br.com.codenation.senha.model.TipoSenha;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,9 +19,9 @@ public interface SenhaService {
 
     void deleteById(Long id);
 
-    List<Senha> findByTipoSenha(TipoSenha level, Pageable pageable);
+    Senha findByTipoSenha(TipoSenha tipoSenha);
 
-    //Senha findNextNumero(Senha senha);
-    //List<Senha> search(String searchTerm, int page, int size);
+    Senha findProximaSenha(TipoSenha tipoSenha);
+
 
 }

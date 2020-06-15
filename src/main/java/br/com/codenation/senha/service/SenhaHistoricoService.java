@@ -21,8 +21,8 @@ public interface SenhaHistoricoService {
 
     //List<SenhaHistorico> findLastCalledSenhas(Long numero);
 
-    //List<SenhaHistorico> findFaltaChamar();
+    SenhaHistorico save(SenhaHistorico senhaHistorico);
 
-    public SenhaHistorico save(SenhaHistorico senhaHistorico);
+
 
 }

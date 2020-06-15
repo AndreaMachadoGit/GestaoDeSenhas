@@ -15,7 +15,7 @@ public class Senha {
     @Enumerated(EnumType.STRING)
     private TipoSenha tipoSenha;
 
-    @Min(0)
+    @Min(1)
     @PositiveOrZero
     private Long proximoNumero;
 
