@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/senhaHistorico")
@@ -69,6 +70,8 @@ public class SenhaHistoricoController {
     @GetMapping("/chamaProximaSenha")
     @ApiOperation("Busca a próxima senha a ser chamada - priorizando as senhas PREFERENCIAIS")
     public SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico) {
+        //senhaHistorico = senhaHistoricoService.findById(3L);
+
         return this.senhaHistoricoService.chamaProximaSenha(senhaHistorico);
     }
 

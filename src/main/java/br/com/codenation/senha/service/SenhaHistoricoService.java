@@ -4,6 +4,7 @@ import br.com.codenation.senha.model.SenhaHistorico;
 import br.com.codenation.senha.model.TipoSenha;
 import org.springframework.data.domain.Pageable;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
