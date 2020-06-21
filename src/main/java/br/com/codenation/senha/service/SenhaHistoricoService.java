@@ -22,6 +22,6 @@ public interface SenhaHistoricoService {
 
     SenhaHistorico save(SenhaHistorico senhaHistorico);
 
-
+    SenhaHistorico createNewSenha(SenhaHistorico senhaHistorico,TipoSenha tipoSenha, Long numero);
 
 }

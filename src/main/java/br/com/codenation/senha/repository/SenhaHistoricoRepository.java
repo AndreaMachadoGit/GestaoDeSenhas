@@ -27,4 +27,6 @@ public interface SenhaHistoricoRepository extends CrudRepository<SenhaHistorico,
             "ORDER BY tipo_senha DESC, NUMERO ASC )  ", nativeQuery = true)
     SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico);
 
+    SenhaHistorico createNewSenha(SenhaHistorico senhaHistorico, TipoSenha tipoSenha, Long numero);
+
 }

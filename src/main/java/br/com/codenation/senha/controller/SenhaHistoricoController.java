@@ -63,7 +63,7 @@ public class SenhaHistoricoController {
     }
 
     @GetMapping("/byTipoSenha/{tipoSenha}")
-    @ApiOperation("Busca uma lista de senhas geradas pelo tipo da senha (NORMAL, PRIORITARIO)")
+    @ApiOperation("Busca uma lista de senhas geradas pelo tipo da senha (NORMAL, PREFERENCIAL)")
     public List<SenhaHistorico> findByTipoSenha(@PathVariable("tipoSenha") TipoSenha tipoSenha, Pageable pageable) {
         return this.senhaHistoricoService.findByTipoSenha(tipoSenha,pageable);
     }

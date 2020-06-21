@@ -19,6 +19,7 @@ public class SenhaServiceImpl implements SenhaService {
     @Autowired
     private SenhaRepository senhaRepository;
 
+    @Autowired
     private SenhaHistoricoRepository senhaHistoricoRepository;
 
     @Override
@@ -42,22 +43,18 @@ public class SenhaServiceImpl implements SenhaService {
     }
 
     @Override
-    public Senha findByTipoSenha(TipoSenha tipoSenha) {
+    public Senha findByTipoSenha(TipoSenha tipoSenha,SenhaHistorico senhaHistorico) {
 
-        Long proximaSenha = senhaRepository.findByTipoSenha(tipoSenha).getProximoNumero();
+        //Long proximaSenha = senhaRepository.findByTipoSenha(tipoSenha).getProximoNumero();
 
         //Pega a próxima senha, atualiza a tabela de senha e gera um registro
         //na tabela de historico de senha.
         Senha senha = senhaRepository.findByTipoSenha(tipoSenha);
         senha.setTipoSenha(tipoSenha);
-        senha.setProximoNumero(proximaSenha+1);
+        senha.setProximoNumero(senha.getProximoNumero()+1);
         senhaRepository.save(senha);
 
-        SenhaHistorico senhaHistorico = new SenhaHistorico();
-        senhaHistorico.setDataGeracao(LocalDateTime.now());
-        senhaHistorico.setNumero(proximaSenha+1);
-        senhaHistorico.setTipoSenha(tipoSenha);
-        senhaHistoricoRepository.save(senhaHistorico);
+        senhaHistorico = senhaHistoricoRepository.createNewSenha(senhaHistorico, tipoSenha, senha.getProximoNumero());
 
         return senha;
     }

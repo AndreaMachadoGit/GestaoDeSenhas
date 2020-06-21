@@ -6,6 +6,7 @@ import br.com.codenation.senha.mapper.SenhaMapper;
 import br.com.codenation.senha.model.Senha;
 import br.com.codenation.senha.model.SenhaHistorico;
 import br.com.codenation.senha.model.TipoSenha;
+import br.com.codenation.senha.service.SenhaHistoricoService;
 import br.com.codenation.senha.service.SenhaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -25,6 +26,11 @@ public class SenhaController {
 
     @Autowired
     private SenhaService senhaService;
+
+    @Autowired
+    private SenhaHistoricoService senhaHistoricoService;
+
+
     List<SenhaDTO> senhaDTO;
 
     @PostMapping
@@ -61,9 +67,9 @@ public class SenhaController {
     }
 
     @GetMapping("/byTipoSenha/{tipoSenha}")
-    @ApiOperation("Gera o valor da próxima senha pelo tipo da senha (NORMAL, PRIORITARIO)")
-    public Senha findByTipoSenha(@PathVariable("tipoSenha") TipoSenha tipoSenha) {
-        return this.senhaService.findByTipoSenha(tipoSenha);
+    @ApiOperation("Gera o valor da próxima senha pelo tipo da senha (NORMAL, PREFERENCIAL)")
+    public Senha findByTipoSenha(@PathVariable("tipoSenha") TipoSenha tipoSenha,SenhaHistorico senhaHistorico) {
+        return this.senhaService.findByTipoSenha(tipoSenha,senhaHistorico);
     }
 
 }

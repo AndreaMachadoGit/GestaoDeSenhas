@@ -44,7 +44,7 @@ public class SenhaHistoricoServiceImpl implements SenhaHistoricoService {
         return this.senhaHistoricoRepository.save(senhaHistorico);
     }
 
-    @Override
+     @Override
     public SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico) {
 
         senhaHistorico.setDataChamada(LocalDateTime.now());
@@ -52,5 +52,14 @@ public class SenhaHistoricoServiceImpl implements SenhaHistoricoService {
 
     }
 
+    @Override
+    public SenhaHistorico createNewSenha(SenhaHistorico senhaHistorico,TipoSenha tipoSenha, Long numero) {
+
+        senhaHistorico.setDataGeracao(LocalDateTime.now());
+        senhaHistorico.setNumero(numero);
+        senhaHistorico.setTipoSenha(tipoSenha);
+        return this.senhaHistoricoRepository.save(senhaHistorico);
+        //return this.senhaHistoricoRepository.save(senhaHistorico);
+    }
 
 }
