@@ -69,8 +69,10 @@ public class SenhaHistoricoController {
 
     @GetMapping("/chamaProximaSenha")
     @ApiOperation("Busca a próxima senha a ser chamada - priorizando as senhas PREFERENCIAIS")
-    public SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico) {
-        //senhaHistorico = senhaHistoricoService.findById(3L);
+    public SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico,Pageable pageable) {
+        //Penso que aqui eu teria que popular o objeto senhahistorico com a proxima senha
+        //para poder passar no return esse objeto já populado
+        //senhaHistorico = senhaHistoricoService.findAll(pageable).stream().filter(s -> s.getDataChamada() <= '00/00/0000').get();
 
         return this.senhaHistoricoService.chamaProximaSenha(senhaHistorico);
     }
