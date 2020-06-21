@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,8 +73,10 @@ public class SenhaHistoricoController {
     public SenhaHistorico chamaProximaSenha(SenhaHistorico senhaHistorico,Pageable pageable) {
         //Penso que aqui eu teria que popular o objeto senhahistorico com a proxima senha
         //para poder passar no return esse objeto já populado
-        //senhaHistorico = senhaHistoricoService.findAll(pageable).stream().filter(s -> s.getDataChamada() <= '00/00/0000').get();
-
+        senhaHistorico = senhaHistoricoService.findAll(pageable).stream().filter(s -> s.getDataChamada() == null)
+                .sorted(Comparator.comparing(SenhaHistorico::getTipoSenha).reversed()
+                .thenComparing(SenhaHistorico::getNumero))
+                .findFirst().get();
         return this.senhaHistoricoService.chamaProximaSenha(senhaHistorico);
     }
 
