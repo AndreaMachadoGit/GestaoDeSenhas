@@ -30,7 +30,6 @@ public class SenhaController {
     @Autowired
     private SenhaHistoricoService senhaHistoricoService;
 
-
     List<SenhaDTO> senhaDTO;
 
     @PostMapping

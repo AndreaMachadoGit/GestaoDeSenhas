@@ -54,12 +54,20 @@ public class SenhaServiceImpl implements SenhaService {
         senha.setProximoNumero(senha.getProximoNumero()+1);
         senhaRepository.save(senha);
 
-        senhaHistorico = senhaHistoricoRepository.createNewSenha(senhaHistorico, tipoSenha, senha.getProximoNumero());
 
+        //senhaHistorico = new SenhaHistorico();
+        SenhaHistoricoService senhaHistoricoService =  null;
+        senhaHistoricoService.createNewSenha(tipoSenha,senha.getProximoNumero()-1);
+
+
+        //senhaHistorico.setId(senhaHistoricoRepository.findMaxId()+1); // tem que pegar o proximo id, não consigo fazer trazer automatico
+        //senhaHistorico.setDataGeracao(LocalDateTime.now());
+        //senhaHistorico.setNumero(senha.getProximoNumero()-1);
+        //senhaHistorico.setTipoSenha(senha.getTipoSenha());
+        //senhaHistoricoRepository.createNewSenha(tipoSenha, senha.getProximoNumero());
+        //senhaHistoricoRepository.save(senhaHistorico);
         return senha;
     }
-
-
 
 
 }

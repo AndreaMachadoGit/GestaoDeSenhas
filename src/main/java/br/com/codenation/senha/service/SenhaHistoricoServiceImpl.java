@@ -53,13 +53,15 @@ public class SenhaHistoricoServiceImpl implements SenhaHistoricoService {
     }
 
     @Override
-    public SenhaHistorico createNewSenha(SenhaHistorico senhaHistorico,TipoSenha tipoSenha, Long numero) {
+    public SenhaHistorico createNewSenha(TipoSenha tipoSenha, Long numero) {
 
+        SenhaHistorico senhaHistorico = new SenhaHistorico();
+        senhaHistorico.setId(senhaHistoricoRepository.findMaxId()+1);
         senhaHistorico.setDataGeracao(LocalDateTime.now());
         senhaHistorico.setNumero(numero);
         senhaHistorico.setTipoSenha(tipoSenha);
+        //return senhaHistorico;
         return this.senhaHistoricoRepository.save(senhaHistorico);
-        //return this.senhaHistoricoRepository.save(senhaHistorico);
     }
 
 }
